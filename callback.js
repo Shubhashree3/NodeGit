@@ -19,7 +19,7 @@ req.end(function (res) {
 	death_string.pop();
 	death_string.shift();
 	death_string.every(e => (deaths.push(Number(e.replace(/,/g, '')))))
-
+	//used promise 
 	const result=new Promise(function(resolve,reject)
 		{	if(deaths)
 			resolve(deaths)
