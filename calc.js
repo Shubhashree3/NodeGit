@@ -35,42 +35,42 @@ app.get('/calc', function (req, response) {
           res.write("Answer is " + result);
           res.end();
 });
-          app.get('/sub', (req, res) => {
+      app.get('/sub', (req, res) => {
           var a = Number(req.query.one);
           var b = Number(req.query.two);
           var result = a-b;
           res.write("Answer is " + result);
           res.end();
 });
-          app.get('/mul', (req, res) => {
+      app.get('/mul', (req, res) => {
           var a = Number(req.query.one);
           var b = Number(req.query.two);
           var result = a*b;
           res.write("Answer is " + result);
           res.end();
 });
-          app.get('/div', (req, res) => {
+      app.get('/div', (req, res) => {
           var a = Number(req.query.one);
           var b = Number(req.query.two);
           var result = a/b;
           res.write("Answer is " + result);
           res.end();
 });
-          app.get('/mod', (req, res) => {
+      app.get('/mod', (req, res) => {
           var a = Number(req.query.one);
           var b = Number(req.query.two);
           var result = floatToInt(a%b);
           res.write("Answer is " + result);
           res.end();
 });
-       app.get('/pow', (req, res) => {
+      app.get('/pow', (req, res) => {
           var a = Number(req.query.one);
           var b = Number(req.query.two);
           var result = Math.pow(a,b);
           res.write("Answer is " + result);
           res.end();
 });
-       app.get('/root', (req, res) => {
+      app.get('/root', (req, res) => {
           var a = Number(req.query.one);
           var b = Number(req.query.two);
           var result = Math.pow(a, 1/b);

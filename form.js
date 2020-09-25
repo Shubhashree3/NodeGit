@@ -1,3 +1,4 @@
+//example of nodejs framwork front and backend
 var http = require("http");
 var express = require('express');
 var fs=require('fs');
@@ -13,9 +14,9 @@ var server = app.listen(1585, function () {
 });
  
  
-app.get('/form', function (req, response) {
+app.get('/', function (req, response) {
   
-  fs.readFile('form1.html', null, function (error, data) 
+  fs.readFile('index.html', null, function (error, data) 
     {
       if (error) 
       {
@@ -25,14 +26,16 @@ app.get('/form', function (req, response) {
       else 
       {
             response.write(data);
+            response.end();
       }
 });});
  
 app.post('/thank', urlencodedParser, function (req, res){
   var reply='';
-  reply += "Your name is" + req.body.name+"</br>";
-  reply += "Your E-mail id is" + req.body.email+"</br>"; 
-  reply += "Your address is" + req.body.address+"</br>";
-  reply += "Your mobile number is" + req.body.mobilno+"</br>";
+  reply += "Your name is: " + req.body.name+"</br>";
+  reply += "Your E-mail id is: " + req.body.email+"</br>"; 
+  reply += "Your address is: " + req.body.address+"</br>";
+  reply += "Your mobile number is: " + req.body.mobilno+"</br>";
   res.send(reply);
+
  });
