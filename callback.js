@@ -1,3 +1,5 @@
+//gives statistics about Covid patient and their country data using COVID API from rapidapi.com 
+
 var unirest = require("unirest");
 var lodash = require('lodash');
 var express=require('express');
@@ -14,15 +16,15 @@ req.headers({
 
 req.end(function (res) {
 	if (res.error) throw new Error(res.error);
-	var death_string = lodash.map(res.body, (item) => (item["Total Deaths_text"]));
+	var death_string = lodash.map(res.body, (item) => (item["Total Deaths_text"]));//get death column
 	var deaths = [];
 	death_string.pop();
 	death_string.shift();
-	death_string.every(e => (deaths.push(Number(e.replace(/,/g, '')))))
+	death_string.every(e => (deaths.push(Number(e.replace(/,/g, '')))))//remove , from number
 
 	const result=new Promise(function(resolve,reject)
 		{	if(deaths)
-			resolve(deaths)
+			resolve(deaths)//showing death column
 			else
 				reject(new Error("death count cannot be fowned"))
 		});
@@ -31,13 +33,13 @@ req.end(function (res) {
 
 	var max = Math.max.apply(null, deaths);
 	var maxcountryindex =deaths.indexOf(max)+1;
-	console.log(res.body[maxcountryindex]["Country_text"]);
-	console.log(max);
+	console.log("Max Death Country: "+res.body[maxcountryindex]["Country_text"]);
+	console.log("Max Deaths: "+max);
 
 	var min = Math.min.apply(null, deaths);
 	var mincountryindex =deaths.indexOf(min)+1;
-	console.log(res.body[mincountryindex]["Country_text"]);
-	console.log(min);
+	console.log("Min Deaths Country: "+res.body[mincountryindex]["Country_text"]);
+	console.log("Min Deaths: "+min);
 
 
 
@@ -45,19 +47,19 @@ req.end(function (res) {
 	var recover_without_NAN=[];
 	recover_string.pop();
 	recover_string.shift();
-	recover_string.every(e => (recover_without_NAN.push((e.replace("N/A","0")))))
+	recover_string.every(e => (recover_without_NAN.push((e.replace("N/A","0"))))) //replace null with 0
 	var recover = [];
-	recover_without_NAN.every(f => (recover.push(Number(f.replace(/,/g, '')))))
+	recover_without_NAN.every(f => (recover.push(Number(f.replace(/,/g, '')))))//remove , from number
 	//console.log(recover);
 	var rmax = Math.max.apply(null, recover);
 	var rmaxcountryindex =recover.indexOf(rmax)+1;
-	console.log(res.body[rmaxcountryindex]["Country_text"]);
-	console.log(rmax);
+	console.log("Max Recoverd Case Country: "+res.body[rmaxcountryindex]["Country_text"]);
+	console.log("Max Recoverd Cases Number: "+rmax);
 
 	var rmin = Math.min.apply(null, recover);
 	var rmincountryindex =recover.indexOf(rmin)+1;
-	console.log(res.body[rmincountryindex]["Country_text"]);
-	console.log(rmin);
+	console.log("Min Recoverd Case Country:"+res.body[rmincountryindex]["Country_text"]);
+	console.log("Min Recoverd Case Number: "+rmin);
 
  	recover_string = lodash.map(res.body, (item) => (item["Active Cases_text"]));
 	recover_without_NAN=[];
@@ -70,13 +72,13 @@ req.end(function (res) {
 	rmax = Math.max.apply(null, recover);
 	rmaxcountryindex =recover.indexOf(rmax)+1;
 	
-	console.log(res.body[rmaxcountryindex]["Country_text"]);
-	console.log(rmax);
+	console.log("Max Active Case Country: "+res.body[rmaxcountryindex]["Country_text"]);
+	console.log("Max Active Case Number: "+rmax);
 
 	rmin = Math.min.apply(null, recover);
 	rmincountryindex =recover.indexOf(rmin)+1;
-	console.log(res.body[rmincountryindex]["Country_text"]);
-	console.log(rmin);
+	console.log("Min Active Case Country: "+res.body[rmincountryindex]["Country_text"]);
+	console.log("Min Active Cases Number: "+rmin);
 
 	req.end(); 
 	

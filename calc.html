@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Calculator</title>
+</head>
+<body>
+	<h1>Calculator</h1>
+	No.1 : <input type="text" name="one" class="one"></br>
+	</br>No.2 : <input type="text" name="two" class="two"></br>
+
+	</br><button class="add">+</button>
+	<button class="sub">-</button>
+	<button class="mul">*</button>
+	<button class="div">/</button>
+	<button class="mod">%</button>
+	<button class="pow">^</button>
+	<button class="root">Root</button>
+	<button  class="reset" value="Reset">Reset</button></br>
+	</br><input type="text" name="result" class="result"></br>
+	
+
+</body>
+<script
+  src="/jquery.js"></script>
+
+<script type="text/javascript">
+	
+	$(document).on('click','.add',function(){
+		var one = $('.one').val();
+		var two = $('.two').val();
+		$.ajax({
+			url:"/add",
+			type:"GET",
+			data:{one:one,two:two},
+			success:function(response){
+				$('.result').val(response);
+			}	
+		})
+	})
+	$(document).on('click','.sub',function(){
+		var one = $('.one').val();
+		var two = $('.two').val();
+		$.ajax({
+			url:"/sub",
+			type:"GET",
+			data:{one:one,two:two},
+			success:function(response){
+				$('.result').val(response);
+			}	
+		})
+	})
+	$(document).on('click','.mul',function(){
+		var one = $('.one').val();
+		var two = $('.two').val();
+		$.ajax({
+			url:"/mul",
+			type:"GET",
+			data:{one:one,two:two},
+			success:function(response){
+				$('.result').val(response);
+			}	
+		})
+	})
+	$(document).on('click','.div',function(){
+		var one = $('.one').val();
+		var two = $('.two').val();
+		$.ajax({
+			url:"/div",
+			type:"GET",
+			data:{one:one,two:two},
+			success:function(response){
+				$('.result').val(response);
+			}	
+		})
+	})
+	$(document).on('click','.mod',function(){
+		var one = $('.one').val();
+		var two = $('.two').val();
+		$.ajax({
+			url:"/div",
+			type:"GET",
+			data:{one:one,two:two},
+			success:function(response){
+				$('.result').val(response);
+			}	
+		})
+	})
+	$(document).on('click','.reset',function(){
+		var one = $('.one').val("");
+		var two = $('.two').val("");
+		
+	})
+	$(document).on('click','.pow',function(){
+		var one = $('.one').val();
+		var two = $('.two').val();
+		$.ajax({
+			url:"/pow",
+			type:"GET",
+			data:{one:one,two:two},
+			success:function(response){
+				$('.result').val(response);
+			}	
+		})
+	})
+	$(document).on('click','.root',function(){
+		var one = $('.one').val();
+		var two = $('.two').val();
+		$.ajax({
+			url:"/root",
+			type:"GET",
+			data:{one:one,two:two},
+			success:function(response){
+				$('.result').val(response);
+			}	
+		})
+	})
+</script>
+</html>
